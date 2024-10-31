@@ -15,8 +15,8 @@ class URLShortener:
     def __init__(self):
         print("URL SHORTENER")
 
-    def generate_short_code(self, length=6):
-        return "".join(random.choices(string.ascii_letters + string.digits, k=length))
+    def generate_short_code(self, length = 6):
+        return "".join(random.choices(string.ascii_letters + string.digits, k = length))
 
     def shorten_url(self, long_url):
         global url_mapping
