@@ -11,16 +11,10 @@ A simple, Python-based URL shortener that takes long URLs and generates short, e
 
 ## Requirements
 
-- Python 3.x
-- No external libraries are needed
+The URL shortener should meet the following requirements:
 
-## How It Works
-
-1. **Shortening a URL**: Generates a random short code and maps it to the long URL.
-2. **Retrieving the URL**: Looks up the long URL based on the provided short code.
-
-## Future Improvements
-
-- **Database Integration**: Store mappings in a database for persistence.
-- **Custom Short Codes**: Allow users to specify their own short codes.
-- **Expiration Dates**: Add optional expiration dates for short URLs.
+1. **Generate Unique Short Codes**: The system should create a unique short code (5–7 characters) for each URL, ensuring no duplicates.
+2. **Efficient URL Storage**: Maintain a mapping between the short code and the original URL, enabling fast look-up and retrieval.
+3. **Reusability**: If a URL has already been shortened, the system should return the existing short code rather than generating a new one.
+4. **Simple URL Retrieval**: Given a short code, the system should retrieve and return the original URL.
+5. **Python Compatibility**: The application should work in Python 3.x without requiring external libraries.
