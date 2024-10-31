@@ -15,17 +15,17 @@ class URLShortener:
     def __init__(self):
         print("URL SHORTENER")
 
-    def generate_short_code(self, length = 6):
-        return ''.join(random.choices(string.ascii_letters + string.digits, k = length))
+    def generate_short_code(self, length=6):
+        return "".join(random.choices(string.ascii_letters + string.digits, k=length))
 
     def shorten_url(self, long_url):
         global url_mapping
         unique_id = generate_id()
         short_code = self.generate_short_code()
         short_url = f"{short_code}.xyz"
-        
+
         url_mapping[short_url] = {"long_url": long_url, "id": unique_id}
-        
+
         return short_url
 
     def get_url(self):
