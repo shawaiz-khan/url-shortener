@@ -2,7 +2,7 @@ import string
 import random
 
 url_id = 0
-url_ls = []
+url_mapping = {}
 
 
 def generate_id():
@@ -11,29 +11,38 @@ def generate_id():
     return url_id
 
 
-class url_shortener:
+class URLShortener:
     def __init__(self):
-        self.long_url = {}
-        self.short_url = {}
-        print(f"URL SHORTENER")
+        print("URL SHORTENER")
+
+    def generate_short_code(self, length = 6):
+        return ''.join(random.choices(string.ascii_letters + string.digits, k = length))
+
+    def shorten_url(self, long_url):
+        global url_mapping
+        unique_id = generate_id()
+        short_code = self.generate_short_code()
+        short_url = f"{short_code}.xyz"
+        
+        url_mapping[short_url] = {"long_url": long_url, "id": unique_id}
+        
+        return short_url
 
     def get_url(self):
-        user_url = input("Enter a URL: ")
-        generate_id()
-        self.long_url[url_id] = {"url": user_url}
+        user_url = input("Enter a URL to shorten: ")
+        short_url = self.shorten_url(user_url)
+        print(f"Shortened URL: {short_url}")
+        return user_url, short_url
 
-    def shorten_url(self):
-        for _ in range(10):
-            val = random.choice(string.ascii_letters + string.digits)
-            global url_ls
-            url_ls.append(val)
+    def retrieve_url(self, short_url):
+        if short_url in url_mapping:
+            return url_mapping[short_url]["long_url"]
+        else:
+            return "URL not found."
 
-    def add_short_url(self):
-        global url_ls
-        newRes = "".join(url_ls) + ".xyz"
-        self.short_url[url_id] = {"shortURL": newRes}
-        print(self.short_url, newRes)
 
-Object = url_shortener()
-newURL = Object.shorten_url()
-newURL = Object.add_short_url()
+url_shortener = URLShortener()
+long_url, short_url = url_shortener.get_url()
+
+retrieved_url = url_shortener.retrieve_url(short_url)
+print(f"Original URL: {retrieved_url}")
